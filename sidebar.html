@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+function update() {
+  let currenttext = document.getElementById("textinput").value
+  google.script.run.sidebarUpdated(currenttext)
+}
+</script>
+</head>
+<body>
+
+<p>Enter your LaTex code and see a live preview of the rendered version in the document.</p>
+
+<input id="textinput" type="text" oninput="update()" placeholder="Type something...">
+
+<p id=updatetext>Update via Mouseover here.</p>
+
+<p></p>
+
+<p closetext="close()">Close Sidebar and remove Bookmark via Click here.</p>
+
+<script>
+document.getElementById('updatetext').onmouseover = function() {
+  let currenttext = document.getElementById("textinput").value
+  google.script.run.fixSidebarImage(currenttext)
+}
+document.getElementById('closetext').onclick = function() {
+  google.script.run.removeBookmark()
+  google.script.host.close()
+}
+</script>
+</body>
+</html>
